@@ -6,7 +6,6 @@ Base = declarative_base()
 #  TeaModel extends SQLAlchemy's Base class.
 #  Extending Base lets SQLAlchemy 'know' about our model, so it can use it.
 
-
 class TeaModel(Base):
 
     # This will be used directly to make a

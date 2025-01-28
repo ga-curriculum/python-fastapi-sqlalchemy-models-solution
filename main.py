@@ -11,7 +11,6 @@ app = FastAPI()
 
 app.include_router(TeasRouter, prefix="/api")
 
-
 @app.get('/')
 def home():
     return 'Hello World!'
