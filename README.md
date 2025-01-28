@@ -6,24 +6,57 @@ This repo contains the solution code for the [Python FastAPI SQLAlchemy Models](
 
 ## Getting Started
 
-1. Fork and clone this repo.
+1. Fork and clone this repo to your local machine.
 
 2. Navigate to the project directory and activate the virtual environment:
 
-```sh
-pipenv shell
+   ```bash
+   pipenv shell
+   ```
 
-```
+3. Install the dependencies:
 
-3. Install the dependencies and start the development server:
+   ```bash
+   pipenv install
+   ```
 
-```bash
-pipenv install
-pipenv run uvicorn main:app --reload
-```
+4. Set up your PostgreSQL database:
 
-Open the application in VSCode:
+   - Ensure PostgreSQL is installed and running on your machine.
+   - Create a database named `teas_db`:
 
-```bash
-code .
-```
+     ```bash
+     createdb teas_db
+     ```
+
+5. Seed the database with initial data:
+
+   - Run the `seed.py` file to populate the database with data:
+
+     ```bash
+     pipenv run python seed.py
+     ```
+
+   You should see output indicating the database was successfully seeded. If there are any errors, check the `db_URI` in the `config/environment.py` file.
+
+6. Start the development server:
+
+   ```bash
+   pipenv run uvicorn main:app --reload
+   ```
+
+7. Open the application in Visual Studio Code:
+
+   ```bash
+   code .
+   ```
+
+### Notes on Configuration
+
+- The database connection string is defined in the `config/environment.py` file:
+
+  ```python
+  db_URI = "postgresql://postgres:postgres@localhost:5432/teas_db"
+  ```
+
+- Ensure your PostgreSQL instance is configured to allow connections with the provided credentials.
