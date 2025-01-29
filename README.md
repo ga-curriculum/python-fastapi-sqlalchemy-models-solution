@@ -6,50 +6,60 @@ This repo contains the solution code for the [Python FastAPI SQLAlchemy Models](
 
 ## Getting Started
 
-1. Fork and clone this repo to your local machine.
+1. Fork and clone this repo.
 
-2. Navigate to the project directory and activate the virtual environment:
+2. Navigate into the project directory:
 
-   ```bash
-   pipenv shell
-   ```
+```sh
+ cd python-fastapi-sqlalchemy-models-solution
+```
 
-3. Install the dependencies:
+3. Install dependencies (this also creates the virtual environment if it doesn’t exist):
 
-   ```bash
-   pipenv install
-   ```
+```sh
+ pipenv install
+```
 
-4. Set up your PostgreSQL database:
+4. Activate the virtual environment:
+
+```sh
+ pipenv shell
+```
+
+### Set up the database
+
+1. Set up your PostgreSQL database:
 
    - Ensure PostgreSQL is installed and running on your machine.
-   - Create a database named `teas_db`:
+   - Create a database named `teas_db` if it does not already exist:
 
-     ```bash
-     createdb teas_db
-     ```
+```bash
+createdb teas_db
+```
 
-5. Seed the database with initial data:
+2. Seed the database with initial data:
 
-   - Run the `seed.py` file to populate the database with data:
+- Run the `seed.py` file to reset the database by dropping existing tables and repopulating it with starter data:
 
-     ```bash
-     pipenv run python seed.py
-     ```
+```bash
+pipenv run python seed.py
+```
 
-   You should see output indicating the database was successfully seeded. If there are any errors, check the `db_URI` in the `config/environment.py` file.
+> You should see output indicating the database was successfully seeded. If there are any errors, check the `db_URI` in the `config/environment.py` file.
 
-6. Start the development server:
+1. Start the development server:
 
-   ```bash
-   pipenv run uvicorn main:app --reload
-   ```
+```bash
+pipenv run uvicorn main:app --reload
+```
 
-7. Open the application in Visual Studio Code:
+> You should now have the app running. Visit [`http://127.0.0.1:8000`](http://127.0.0.1:8000) in your browser to confirm it’s working.
 
-   ```bash
-   code .
-   ```
+4. Open the application in Visual Studio Code:
+
+```bash
+code .
+```
 
 ### Notes on Configuration
 
