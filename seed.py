@@ -2,6 +2,7 @@ from sqlalchemy.orm import sessionmaker, Session
 from data.tea_data import teas_list
 from config.environment import db_URI
 from sqlalchemy import create_engine
+from models.tea import Base, TeaModel
 
 engine = create_engine(db_URI)
 SessionLocal = sessionmaker(bind=engine)

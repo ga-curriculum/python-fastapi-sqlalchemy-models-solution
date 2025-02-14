@@ -47,21 +47,37 @@ pipenv run python seed.py
 
 > You should see output indicating the database was successfully seeded. If there are any errors, check the `db_URI` in the `config/environment.py` file.
 
-1. Start the development server:
+### Verifying the Data
 
-```bash
-pipenv run uvicorn main:app --reload
+Once seeding has completed, re-connect to the `psql` shell:
+
+```sh
+psql -d teas_db -U <username>
 ```
 
-> You should now have the app running. Visit [`http://127.0.0.1:8000`](http://127.0.0.1:8000) in your browser to confirm it’s working.
+In the psql shell, run the following query:
 
-4. Open the application in Visual Studio Code:
-
-```bash
-code .
+```sql
+SELECT * FROM teas;
 ```
 
-### Notes on Configuration
+You should see something like the following:
+
+```
+| id |       name       | in_stock | rating |
+|----|------------------|----------|--------|
+|  1 | chai             | t        |      4 |
+|  2 | earl grey        | f        |      3 |
+|  3 | matcha           | t        |      3 |
+|  4 | green tea        | t        |      5 |
+|  5 | black tea        | t        |      4 |
+|  6 | oolong           | f        |      4 |
+|  7 | hibiscus         | t        |      4 |
+|  8 | peppermint       | t        |      5 |
+|  9 | jasmine          | t        |      3 |
+```
+
+## Notes on Configuration
 
 - The database connection string is defined in the `config/environment.py` file:
 
