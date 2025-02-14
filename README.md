@@ -37,7 +37,26 @@ This repo contains the solution code for the [Python FastAPI SQLAlchemy Models](
 createdb teas_db
 ```
 
-2. Seed the database with initial data:
+### Connect to database
+
+Open the application in Visual Studio Code:
+
+```bash
+code .
+```
+
+The database connection string is defined in the `config/environment.py` file:
+
+  ```python
+  db_URI = "postgresql://<username>@localhost:5432/teas_db"
+  ```
+
+- Ensure your PostgreSQL instance is configured to allow connections with the provided credentials.
+- **_Modify your database connection string to use your username as the `<username>`._**
+
+### Seed the database
+
+Seed the database with initial data:
 
 - Run the `seed.py` file to reset the database by dropping existing tables and repopulating it with starter data:
 
@@ -76,60 +95,3 @@ You should see something like the following:
 |  8 | peppermint       | t        |      5 |
 |  9 | jasmine          | t        |      3 |
 ```
-
-## Notes on Configuration
-
-- The database connection string is defined in the `config/environment.py` file:
-
-  ```python
-  db_URI = "postgresql://<username>@localhost:5432/teas_db"
-  ```
-
-- Ensure your PostgreSQL instance is configured to allow connections with the provided credentials.
-- **_Modify your database connection string to use your username as the `<username>`._**
-
-### Setting Up a User in PostgreSQL
-
-To connect to a specific PostgreSQL user, use the following command:
-
-```sh
-psql -U <username>
-```
-
-#### Handling "Role Does Not Exist" Error
-
-If you see this error:
-
-```sh
-Error: FATAL: role "<username>" does not exist
-```
-
-it means that the specified user does not exist in PostgreSQL.
-
-#### Creating a New PostgreSQL User
-
-To create the user, run the following command inside `psql`:
-
-```sql
-CREATE ROLE "<username>" WITH LOGIN PASSWORD 'your_secure_password';
-```
-
-> 🔹 **Replace** `<username>` with your desired username and **choose a secure password**.
-
-This will allow you to connect using one of the following database connection strings:
-
-#### Connection Strings:
-
-If **no password is required**:
-
-```python
-db_URI = "postgresql://<username>@localhost:5432/teas_db"
-```
-
-If **a password is required**:
-
-```python
-db_URI = "postgresql://<username>:<your_secure_password>@localhost:5432/teas_db"
-```
-
-This ensures that PostgreSQL correctly authenticates and allows access to the `teas_db` database.
